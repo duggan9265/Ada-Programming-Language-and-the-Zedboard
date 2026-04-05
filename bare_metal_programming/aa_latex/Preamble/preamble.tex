@@ -1,0 +1,168 @@
+%---------- Encoding and Fonts ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{textcomp}
+%\usepackage{newtxtext,newtxmath}
+
+%---------- Bibliography ----------
+\usepackage{csquotes}
+\usepackage[backend=biber, sorting=none]{biblatex}
+\addbibresource{Bibliography/bib.bib}
+
+%---------- Math and Science ----------
+\let\Bbbk\relax
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{braket}
+\usepackage{systeme}
+\usepackage{circuitikz}
+
+%---------- Figures and Tables ----------
+\usepackage{subfig}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{colortbl}
+
+%---------- Formatting ----------
+\usepackage[all]{nowidow}
+\usepackage{microtype} % full microtype enabled
+\usepackage{tablefootnote}
+\usepackage{setspace}
+\setstretch{1.25} % body text spacing
+\setlength{\parindent}{15pt}
+\setlength{\parskip}{0pt}
+
+%---------- Lists and Code ----------
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{listings}
+
+%---------- Long Documents ----------
+\usepackage{titlesec}
+\titlespacing*{\section}
+{0pt}      % left margin
+{1.5ex plus 0.5ex minus 0.2ex} % space before
+{1.0ex plus 0.2ex}            % space after
+
+\titlespacing*{\subsection}
+{0pt}
+{1.2ex plus 0.4ex minus 0.2ex}
+{0.8ex plus 0.2ex}
+\usepackage{titletoc}
+\usepackage{notoccite}
+\makeatletter
+\let\c@lofdepth\relax
+\let\c@lotdepth\relax
+\makeatother
+\usepackage{tocloft}
+
+%---------- TOC Formatting ----------
+\setlength{\cftbeforechapskip}{1em}
+\setlength{\cftbeforesecskip}{0.2em}
+\setlength{\cftbeforesubsecskip}{0pt}
+\setlength{\cftbeforepartskip}{0.75em}
+
+% Indentation control
+\setlength{\cftchapindent}{0pt}
+\setlength{\cftsecindent}{1.5em}
+\setlength{\cftsubsecindent}{3.2em}
+
+% Number widths
+\setlength{\cftchapnumwidth}{3em}
+\setlength{\cftsecnumwidth}{4em}
+\setlength{\cftsubsecnumwidth}{4.5em}
+
+% Bold chapter and part titles in TOC
+\renewcommand{\cftchappresnum}{\bfseries}
+\renewcommand{\cftchapfont}{\bfseries}
+\renewcommand{\cftpartfont}{\bfseries}
+\renewcommand{\cftpartpresnum}{\bfseries}
+\renewcommand{\cftpartaftersnum}{\bfseries}
+\renewcommand{\cftpartleader}{\bfseries\cftdotfill{\cftdotsep}}
+
+
+%---------- Graphics and Hyperlinks ----------
+\usepackage{pdfpages}
+\usepackage{tikz}
+\usetikzlibrary{circuits.logic.IEC}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=black
+}
+
+\usepackage[acronym]{glossaries}
+\makeglossaries
+
+%---------- Listings Styles ----------
+\definecolor{vgreen}{RGB}{104,180,104}
+\definecolor{vblue}{RGB}{49,49,255}
+\definecolor{vorange}{RGB}{255,143,102}
+
+\lstdefinestyle{verilog-style}{
+    language=Verilog,
+    basicstyle=\small\ttfamily,
+    keywordstyle=\color{vblue},
+    identifierstyle=\color{black},
+    commentstyle=\color{vgreen},
+    numbers=left,
+    numberstyle=\tiny\color{black},
+    numbersep=10pt,
+    tabsize=8,
+    moredelim=*[s][\colorIndex]{[}{]},
+    literate=*{:}{:}1,
+    breaklines=true,
+    xleftmargin=10pt,
+    aboveskip=1em,
+    belowskip=1em
+}
+
+\lstdefinestyle{vhdl}{
+    language=VHDL,
+    basicstyle=\small\ttfamily,
+    keywordstyle=\color{vblue},
+    identifierstyle=\color{black},
+    commentstyle=\color{vgreen},
+    numbers=left,
+    numberstyle=\tiny\color{black},
+    numbersep=10pt,
+    tabsize=8,
+    moredelim=*[s][\colorIndex]{[}{]},
+    literate=*{:}{:}1,
+    breaklines=true,
+    xleftmargin=10pt,
+    aboveskip=1em,
+    belowskip=1em
+}
+
+\lstdefinestyle{pythonStyle}{
+    language=Python,
+    basicstyle=\ttfamily,
+    keywordstyle=\color{blue},
+    stringstyle=\color{red},
+    commentstyle=\color{green},
+    morecomment=[l][\color{magenta}]{\#}
+}
+
+\makeatletter
+\newcommand*\@lbracket{[}
+\newcommand*\@rbracket{]}
+\newcommand*\@colon{:}
+\newcommand*\colorIndex{%
+    \edef\@temp{\the\lst@token}%
+    \ifx\@temp\@lbracket \color{black}%
+    \else\ifx\@temp\@rbracket \color{black}%
+    \else\ifx\@temp\@colon \color{black}%
+    \else \color{vorange}%
+    \fi\fi\fi
+}
+\makeatother
+
+%---------- Document Layout ----------
+\frenchspacing
+\setcounter{tocdepth}{2} % Include up to subsections
+\usepackage[a4paper, margin=1in]{geometry}

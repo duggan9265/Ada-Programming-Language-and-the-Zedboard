@@ -1,4 +1,3 @@
-with Ada.Real_Time.Delays;
 with zedboard_emio_gpio;
 with Interfaces;
 
@@ -8,6 +7,7 @@ begin
 
    loop
       zedboard_emio_gpio.Set_LEDs (16#AA#);
-      delay 1.0;
+      --  delay 1.0;
+      --  zedboard_emio_gpio.Set_LEDs (16#00#);
    end loop;
 end Main;

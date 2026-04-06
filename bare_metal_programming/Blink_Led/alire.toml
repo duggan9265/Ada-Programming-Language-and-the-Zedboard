@@ -1,0 +1,12 @@
+name = "blink_led"
+description = "Crate to Blink the 8 LEDs on the Zedboard via the EMIO GPIOs (PS Side)."
+version = "0.1.0-dev"
+
+authors = ["DD"]
+maintainers = ["DD <duggan92652@gmail.com>"]
+maintainers-logins = ["duggan9265"]
+licenses = "MIT"
+website = "https://github.com/duggan9265/Ada-Programming-Language-and-the-Zedboard"
+tags = ["zedboard", "fpga", "emio", "gpio", "amd", "xilinx", "zynq-7000"]
+
+executables = ["main"]

@@ -1,0 +1,51 @@
+V "GNAT Lib v2021"
+P ZX
+
+RN
+RV NO_ELABORATION_CODE
+
+U zedboard_emio_gpio%b	zedboard_emio_gpio.adb	0690de70 NE OO PK IL KM
+W interfaces%s		interfac.ads		interfac.ali
+
+U zedboard_emio_gpio%s	zedboard_emio_gpio.ads	aef2ec42 EE OO PK IL
+W interfaces%s		interfac.ads		interfac.ali
+W system%s		system.ads		system.ali
+W system.storage_elements%s  s-stoele.adb	s-stoele.ali
+
+D ada.ads		20210520051132 76789da1 ada%s
+D a-unccon.ads		20210520051130 0e9b276f ada.unchecked_conversion%s
+D interfac.ads		20210520051132 edec285f interfaces%s
+D system.ads		20210520051136 2ffa5114 system%s
+D s-stoele.ads		20210520051134 2dc34a04 system.storage_elements%s
+D s-stoele.adb		20210520051134 ed88f8fb system.storage_elements%b
+D zedboard_emio_gpio.ads  20260406154044 4127df0d zedboard_emio_gpio%s
+D zedboard_emio_gpio.adb  20260406154402 aa5b2922 zedboard_emio_gpio%b
+G a e
+G c Z s b [initialise zedboard_emio_gpio 20 14 none]
+G c Z s b [set_leds zedboard_emio_gpio 21 14 none]
+X 3 interfac.ads
+38K9*Interfaces 231e15 7|14w6 21r32 43r13 48r13 52r12 8|1w6 1r22 15r31 17r44
+68M9*Unsigned_8 7|21r43 8|15r42
+79M9*Unsigned_32 7|43r24 48r24 52r23 8|17r55
+X 4 system.ads
+37K9*System 193e11 7|12w6 13r6 17r8 31r37 32r6 34r27 35r30 36r27 37r30 38r27
+. 39r30
+67M9*Address 7|31r44 34r34 36r34 38r34
+X 5 s-stoele.ads
+42K16*Storage_Elements 116e28 7|13w13 17r15 32r13 35r37 37r37 39r37
+54I9*Storage_Offset<long_long_integer> 7|35r54 37r54 39r54
+75V14*"+"{4|67M9} 7|35s28 37s28 39s28
+106V13*To_Address{4|67M9} 7|32s30
+X 7 zedboard_emio_gpio.ads
+16K9*zedboard_emio_gpio 31E4 56l5 56e23 8|3b14 22l5 22t23
+20U14*Initialise 8|5b14 13l8 13t18
+21U14*Set_LEDs 21>24 8|15b14 18l8 18t16
+21m24 Value{3|68M9} 8|15b23 17r68
+31m4 GPIO_Control_Reg_Base{4|67M9} 35r6 37r6 39r6
+34m4 Data_2_Addr{4|67M9} 44r27
+36m4 DIRM_2_Addr{4|67M9} 49r27
+38m4 OEN_2_Addr{4|67M9} 53r26
+43m4 Data_2{3|79M9} 44m8 44r8 45r21 8|17m7 17r18
+48m4 DIRM_2{3|79M9} 49m8 49r8 50r21 8|7m7 7r17
+52m4 OEN_2{3|79M9} 53m8 53r8 54r21 8|12m7 12r16
+

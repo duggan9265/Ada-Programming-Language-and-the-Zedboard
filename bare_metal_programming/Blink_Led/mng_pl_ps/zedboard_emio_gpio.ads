@@ -14,7 +14,9 @@ with System.Storage_Elements; -- A child package of Storage.
 with Interfaces; --defines types with exact sizes
 
 package zedboard_emio_gpio is
-
+   use System.Storage_Elements;  -- without get: zedboard_emio_gpio.ads:33:28: error: 
+                                 -- possible missing with/use of System.Storage_Elements.
+                                 -- It is due to use of the +, which needs the use clause I believe
    procedure Initialise;
    procedure Set_LEDs (Value : Interfaces.Unsigned_8);
 

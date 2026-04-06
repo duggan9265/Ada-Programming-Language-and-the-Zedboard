@@ -1,0 +1,70 @@
+V "GNAT Lib v2021"
+M P W=b
+P ZX
+
+RN
+RV NO_DELAY
+RV NO_FIXED_POINT
+RV NO_RELATIVE_DELAY
+
+U main%b		main.adb		48e1d7f6 NE OO SU
+W ada%s			ada.ads			ada.ali
+Z ada.calendar.delays%s	a-caldel.adb		a-caldel.ali
+W ada.real_time%s	a-reatim.adb		a-reatim.ali
+W ada.real_time.delays%s  a-retide.adb		a-retide.ali
+W interfaces%s		interfac.ads		interfac.ali
+W zedboard_emio_gpio%s	zedboard_emio_gpio.adb	zedboard_emio_gpio.ali
+
+D ada.ads		20210520051132 76789da1 ada%s
+D a-calend.ads		20210520051128 474d9720 ada.calendar%s
+D a-caldel.ads		20210520051128 9f20b83d ada.calendar.delays%s
+D a-except.ads		20210520051128 946f3014 ada.exceptions%s
+D a-reatim.ads		20210520051128 0240fc73 ada.real_time%s
+D a-retide.ads		20210520051128 081cdaa4 ada.real_time.delays%s
+D a-unccon.ads		20210520051130 0e9b276f ada.unchecked_conversion%s
+D interfac.ads		20210520051132 edec285f interfaces%s
+D i-c.ads		20210520051132 d9beded9 interfaces.c%s
+D i-cstrin.ads		20210520051132 341d0ddf interfaces.c.strings%s
+D main.adb		20260406153334 ec36fa00 main%b
+D system.ads		20210520051136 2ffa5114 system%s
+D s-atacco.ads		20210520051132 4c36d12f system.address_to_access_conversions%s
+D s-exctab.ads		20210520051132 54135002 system.exception_table%s
+D s-multip.ads		20210520051134 38ac9f73 system.multiprocessors%s
+D s-osinte.ads		20210520051128 97504df8 system.os_interface%s
+D s-parame.ads		20210520051134 4752c4cb system.parameters%s
+D s-secsta.ads		20210520051134 9b3ab94b system.secondary_stack%s
+D s-soflin.ads		20210520051134 a7318a92 system.soft_links%s
+D s-stache.ads		20210520051134 a37c21ec system.stack_checking%s
+D s-stausa.ads		20210520051134 017a0a05 system.stack_usage%s
+D s-stalib.ads		20210520051134 472fbca8 system.standard_library%s
+D s-stoele.ads		20210520051134 2dc34a04 system.storage_elements%s
+D s-tasinf.ads		20210520051128 601f6b72 system.task_info%s
+D s-taspri.ads		20210520051128 a1350802 system.task_primitives%s
+D s-taprop.ads		20210520051128 6eefbe12 system.task_primitives.operations%s
+D s-taskin.ads		20210520051128 88fba9ad system.tasking%s
+D s-traent.ads		20210520051134 26a8d361 system.traceback_entries%s
+D s-unstyp.ads		20210520051134 2b077493 system.unsigned_types%s
+D s-win32.ads		20210520051136 15ac53fb system.win32%s
+D zedboard_emio_gpio.ads  20260406154044 4127df0d zedboard_emio_gpio%s
+G a e
+G c Z b b [main standard 5 11 none]
+G r c none [main standard 5 11 none] [initialise zedboard_emio_gpio 20 14 none]
+G r c none [main standard 5 11 none] [set_leds zedboard_emio_gpio 21 14 none]
+X 1 ada.ads
+16K9*Ada 20e8 11|1r6
+X 5 a-reatim.ads
+39K13*Real_Time 185e18 11|1r10
+X 6 a-retide.ads
+37K23*Delays 48e25 11|1w20
+X 8 interfac.ads
+38K9*Interfaces 231e15 11|3w6
+X 11 main.adb
+5U11*Main 5b11 13l5 13t9
+X 21 s-stausa.ads
+208U14*Initialize 209i<c,__gnat_stack_usage_initialize>22
+273U14*Output_Results 277i<c,__gnat_stack_usage_output_results>22
+X 31 zedboard_emio_gpio.ads
+16K9*zedboard_emio_gpio 11|2w6 7r4 10r7 31|56e23
+20U14*Initialise 11|7s23
+21U14*Set_LEDs 11|10s26
+

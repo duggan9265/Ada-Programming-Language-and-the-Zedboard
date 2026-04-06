@@ -1,27 +1,27 @@
 \section{Write the Constraints File}
 
-    We now need to connect the LED pin to the GPIO\_0 port we just created. We will do this by writing a constraints file, which connects pins on the Zedboard to signals in our RTL design loaded onto the \gls{fpga}.
+    We now need to connect the LED pins to the o\_leds port we just created. This port is an input to the \gls{fpga}, and thus an output from the \gls{ps}. We will do this by writing a constraints file, which connects pins on the Zedboard to signals in our RTL design loaded onto the \gls{fpga}.
 
     \subsection{Constraints File Syntax}
 
     Vivado constraints files (\texttt{.xdc}) use Tcl syntax to assign physical and electrical properties to design objects such as ports. The general form is:
 
-    \begin{verbatim}
+    \begin{lstlisting}[style=xdc]
     set_property <PROPERTY> <VALUE> [get_<object_type> <object_name>]
-    \end{verbatim}
+    \end{lstlisting}
 
     For top-level I/O, the object type is \texttt{get\_ports}, where the port name must match the RTL design exactly. For example:
 
-    \begin{verbatim}
+    \begin{lstlisting}[style=xdc]
     set_property PACKAGE_PIN T22 [get_ports {leds_o[0]}]
     set_property IOSTANDARD LVCMOS33 [get_ports {leds_o[0]}]
-    \end{verbatim}
+    \end{lstlisting}
 
     Multiple properties can be assigned in a single command using \texttt{-dict}:
 
-    \begin{verbatim}
+    \begin{lstlisting}[style=xdc]
     set_property -dict {PACKAGE_PIN T22 IOSTANDARD LVCMOS33} [get_ports {leds_o[0]}]
-    \end{verbatim}
+    \end{lstlisting}
 
     Curly braces \{\} are used to group names (e.g. bus indices like \texttt{leds\_o[0]}) and prevent Tcl parsing issues.
 
@@ -46,12 +46,12 @@
 
         \item We note that the LEDs are sourced from 3.3 V banks. This means each LED pin requiers the input output standard LCVMOSS 33. If we take Zynq pin T22 then, we have:
         
-            \begin{verbatim}
+            \begin{lstlisting}[style=xdc]
                 set_property PACKAGE_PIN T22 [get_ports {o_leds[0]}]
                 set_property IOSTANDARD LVCMOS33 [get_ports {o_leds[0]}]
-            \end{verbatim}
+            \end{lstlisting}
         
-            \item the get\_ports name and index is decided by us. We could have used a different name, e.g.
+            \item The get\_ports name and index is decided by us. We could have used a different name, e.g.
             
                 \begin{verbatim}
                     set_property PACKAGE_PIN T22 [get_ports {leds_out[0]}]
@@ -59,9 +59,25 @@
                 \end{verbatim}
             \item We can also using -dict to make it one line:
             
-            \begin{verbatim}
+            \begin{lstlisting}[style=xdc]
                 set_property -dict {PACKAGE_PIN T22 IOSTANDARD LVCMOS33} [get_ports {o_leds[0]}]
-            \end{verbatim}
+            \end{lstlisting}
 
-        \item Note, there is a zedboard\_master.xdc that can somewhat simplify the above process.        
+            \item The full constraints file for all 8 LEDs is therefore
+            
+            \begin{lstlisting}[style=xdc]
+                set_property -dict {PACKAGE_PIN T22 IOSTANDARD LVCMOS33} [get_ports {o_leds[0]}];
+                set_property -dict {PACKAGE_PIN T21 IOSTANDARD LVCMOS33} [get_ports {o_leds[1]}];
+                set_property -dict {PACKAGE_PIN U22 IOSTANDARD LVCMOS33} [get_ports {o_leds[2]}];
+                set_property -dict {PACKAGE_PIN U21 IOSTANDARD LVCMOS33} [get_ports {o_leds[3]}];
+                set_property -dict {PACKAGE_PIN V22 IOSTANDARD LVCMOS33} [get_ports {o_leds[4]}];
+                set_property -dict {PACKAGE_PIN W22 IOSTANDARD LVCMOS33} [get_ports {o_leds[5]}];
+                set_property -dict {PACKAGE_PIN U19 IOSTANDARD LVCMOS33} [get_ports {o_leds[6]}];
+                set_property -dict {PACKAGE_PIN U14 IOSTANDARD LVCMOS33} [get_ports {o_leds[7]}];
+            \end{lstlisting}
+
+        \item Note, there is a zedboard\_master.xdc that can somewhat simplify the above process. 
+        \item Next, add the constraints file to the project by selecting Add Sources inside Vivado. 
+        \item Generate the bitstream. Once complete, select File, Export, Export Hardware.
+        \item Click continue, tick include bitstream and place inside a folder called temp.      
     \end{enumerate} 

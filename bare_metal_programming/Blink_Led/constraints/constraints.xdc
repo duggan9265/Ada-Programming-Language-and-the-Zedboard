@@ -10,14 +10,14 @@
 #        LD6 PL U19
 #        LD7 PL U14 
 
-set_property -dict {PACKAGE_PIN T22 IOSTANDARD LVCMOS33} [get_ports {leds_o[0]}];
-set_property -dict {PACKAGE_PIN T21 IOSTANDARD LVCMOS33} [get_ports {leds_o[1]}];
-set_property -dict {PACKAGE_PIN U22 IOSTANDARD LVCMOS33} [get_ports {leds_o[2]}];
-set_property -dict {PACKAGE_PIN U21 IOSTANDARD LVCMOS33} [get_ports {leds_o[3]}];
-set_property -dict {PACKAGE_PIN V22 IOSTANDARD LVCMOS33} [get_ports {leds_o[4]}];
-set_property -dict {PACKAGE_PIN W22 IOSTANDARD LVCMOS33} [get_ports {leds_o[5]}];
-set_property -dict {PACKAGE_PIN U19 IOSTANDARD LVCMOS33} [get_ports {leds_o[6]}];
-set_property -dict {PACKAGE_PIN U14 IOSTANDARD LVCMOS33} [get_ports {leds_o[7]}];
+set_property -dict {PACKAGE_PIN T22 IOSTANDARD LVCMOS33} [get_ports {o_leds[0]}];
+set_property -dict {PACKAGE_PIN T21 IOSTANDARD LVCMOS33} [get_ports {o_leds[1]}];
+set_property -dict {PACKAGE_PIN U22 IOSTANDARD LVCMOS33} [get_ports {o_leds[2]}];
+set_property -dict {PACKAGE_PIN U21 IOSTANDARD LVCMOS33} [get_ports {o_leds[3]}];
+set_property -dict {PACKAGE_PIN V22 IOSTANDARD LVCMOS33} [get_ports {o_leds[4]}];
+set_property -dict {PACKAGE_PIN W22 IOSTANDARD LVCMOS33} [get_ports {o_leds[5]}];
+set_property -dict {PACKAGE_PIN U19 IOSTANDARD LVCMOS33} [get_ports {o_leds[6]}];
+set_property -dict {PACKAGE_PIN U14 IOSTANDARD LVCMOS33} [get_ports {o_leds[7]}];
 
 # Set the bank voltage for IO Bank 34 to 1.8V by default.
 # set_property IOSTANDARD LVCMOS33 [get_ports -of_objects [get_iobanks 34]];

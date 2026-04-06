@@ -1,0 +1,64 @@
+{
+    "[latex]": {
+        "editor.defaultFormatter": "James-Yu.latex-workshop",
+        "editor.wordWrap": "bounded",
+        "editor.wordWrapColumn": 110
+    },
+
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.view.pdf.split": "right",
+    "latex-workshop.view.pdf.hand": true,
+    "latex-workshop.view.pdf.invert": 0,
+
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-pdf",
+                "-aux-directory=aa_latex/output_files",
+                "-output-directory=aa_latex/output_files",
+                "%DOC%"
+            ]
+        }
+    ],
+
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "latexmk (PDF next to main.tex)",
+            "tools": ["latexmk"]
+        }
+    ],
+
+    "latex-workshop.latex.recipe.default": "latexmk (PDF next to main.tex)",
+
+    "latex-workshop.latex.clean.fileTypes": [
+        "output_files/*.aux",
+        "output_files/*.bbl",
+        "output_files/*.blg",
+        "output_files/*.idx",
+        "output_files/*.ind",
+        "output_files/*.lof",
+        "output_files/*.lot",
+        "output_files/*.out",
+        "output_files/*.toc",
+        "output_files/*.acn",
+        "output_files/*.acr",
+        "output_files/*.alg",
+        "output_files/*.glg",
+        "output_files/*.glo",
+        "output_files/*.gls",
+        "output_files/*.fls",
+        "output_files/*.log",
+        "output_files/*.fdb_latexmk",
+        "output_files/*.synctex.gz"
+    ],
+
+    "editor.rulers": [110],
+    "rewrap.wrappingColumn": 110,
+    "sarif-viewer.connectToGithubCodeScanning": "off"
+}

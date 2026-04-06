@@ -1,12 +1,22 @@
 \documentclass[10pt,a4paper]{book}
 
 % -------- Preamble --------
-
 \input{aa_latex/Preamble/preamble.tex}
 
-\begin{document}
+% -------- Glossary & Acronyms -------
+\input{aa_latex/Glossary/Glossary.tex}
 
-    \input{aa_latex/aa_notes/axi_gpio_reg_mapping.tex}
+
+\begin{document}
+   
+    \printglossary[type=\acronymtype]    
+
+    \chapter{Project 1 - Blink and LED}
+        \input{aa_latex/aa_notes/setup_emio.tex}
+        \input{aa_latex/aa_notes/write_constraints_file.tex}
+
+        % \input{aa_latex/aa_notes/axi_gpio_reg_mapping.tex}
+   
 
 
 

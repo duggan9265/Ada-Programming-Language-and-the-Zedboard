@@ -10,3 +10,6 @@ website = "https://github.com/duggan9265/Ada-Programming-Language-and-the-Zedboa
 tags = ["zedboard", "fpga", "emio", "gpio", "amd", "xilinx", "zynq-7000"]
 
 executables = ["main"]
+
+[[depends-on]]
+gnat_arm_elf = "^15.2.1"

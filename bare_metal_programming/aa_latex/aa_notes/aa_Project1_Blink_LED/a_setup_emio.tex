@@ -1,4 +1,4 @@
-\section{Setting up EMIO to Allow Ps to Control the LEDs}
+\section{Setting up EMIO to Allow the Processing System to Control the LEDs}
 
 On a Zedboard, the LEDs can only be controlled via the \gls{pl} (FPGA) side, as the 
 physical pins are only connected to the \gls{fpga}. As such, the CPU cannot directly control the LEDs.
@@ -14,7 +14,7 @@ To enable the \gls{emio}:
         \end{center}
 
     \item Double click on the processing system.
-    \item Select MIO configuration, I/O Peripherals and at the open GPIO. Tick EMIO GPIO and in the box select 8.
+    \item Select MIO configuration, I/O Peripherals and at the end open GPIO. Tick EMIO GPIO and in the box select 8.
     
          \begin{center}
             \includegraphics[width=0.9\textwidth]{../Figures/Blink_LED/setup_emio/check_emio.png}
@@ -50,15 +50,19 @@ To enable the \gls{emio}:
             \includegraphics[width=0.9\linewidth]{../Figures/Blink_LED/setup_emio/hdl_wrapper.png}
         \end{center}
 
-    \item Generate the bitstream. Once complete, select File, Export, Export Hardware.
-    \item Click continue, tick include bitstream and place inside a folder called temp.
-
 \end{enumerate}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.9\textwidth]{../Figures/Blink_LED/setup_emio/emio_interface.png}
-    \caption{EMIO interface. Taken from UG585 from AMD.}
-\end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{../Figures/Blink_LED/setup_emio/ps_oleds_connected.png}
+        \caption{The \gls{emio} GPIO output from the \gls{ps} is now routed to the \gls{fpga} via o\_leds. }
+    \end{figure}
+
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{../Figures/Blink_LED/setup_emio/emio_interface.png}
+        \caption{EMIO interface. Taken from UG585 from AMD.}
+    \end{figure}
 
     

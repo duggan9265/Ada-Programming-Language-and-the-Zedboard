@@ -6,7 +6,7 @@
 -- address is dynamic (not known at compile time).
 
 -- I extensively use comments as I am learning as I go!
--- I intentionally qualify everything to understand which function is apart
+-- I intentionally try to qualify everything to understand which function is apart
 -- of which package.
 
 with System; -- A top-level Ada package
@@ -14,7 +14,7 @@ with System.Storage_Elements; -- A child package of Storage.
 with Interfaces; --defines types with exact sizes
 
 package zedboard_emio_gpio is
-   use System.Storage_Elements;  -- without get: zedboard_emio_gpio.ads:33:28: error: 
+   use System.Storage_Elements;  -- without "use" get error --> zedboard_emio_gpio.ads:33:28: error: 
                                  -- possible missing with/use of System.Storage_Elements.
                                  -- It is due to use of the +, which needs the use clause I believe
    procedure Initialise;
@@ -26,7 +26,7 @@ private
    -- Declare the GPIO Control register base address.
    -- To_Address is a type conversion as
    -- "Address" is a particular type and we have
-   -- a hex literal that has to be converted.
+   -- a hex literal (different type) that has to be converted.
    -- We use constant as the values are fixed by Hardware.
    GPIO_Control_Reg_Base : constant System.Address :=
      System.Storage_Elements.To_Address (16#E000_A000#);
@@ -41,15 +41,18 @@ private
    -- Now the representation clauses:
 
    Data_2 : Interfaces.Unsigned_32;
+
    for Data_2'Address use Data_2_Addr;
    pragma Volatile (Data_2); -- Need this according to chat gpt
    -- suppress any optimizations that would interfere
    --  with the correct reading of the volatile variables.
    DIRM_2 : Interfaces.Unsigned_32;
+
    for DIRM_2'Address use DIRM_2_Addr;
    pragma Volatile (DIRM_2);
 
    OEN_2 : Interfaces.Unsigned_32;
+   
    for OEN_2'Address use OEN_2_Addr;
    pragma Volatile (OEN_2);
 

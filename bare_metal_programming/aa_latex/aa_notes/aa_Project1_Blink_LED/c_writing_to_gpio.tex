@@ -58,7 +58,7 @@ Note: I relaised a bit too late (and I was lazy to change) that I should´ve use
 
 \subsection{Ada Code - zedboard\_emio\_gpio.ads}
 
-The specification file is used to set the base address for the \gls{emio} GPIO, and the offsets. As this is memory-mapping, we do use access types, which are in some respects the Ada version of pointers. Instead, we use what is called representation clausing, which, as I understand it, allows one to associate a variable (or enumeration type) to a specific memory location or hardware register at a fixed address, allowing the program to directly map variables onto physical memory (such as memory-mapped I/O registers) without using traditional pointers.
+The specification file is used to set the base address for the \gls{emio} GPIO, and the offsets. As this is memory-mapping, we do not use access types, which are in some respects the Ada version of pointers, and as far as I am aware should typically be avoided. Instead, we use what is called representation clausing, which, as I understand it, allows one to associate a variable (or enumeration type) to a specific memory location or hardware register at a fixed address, allowing the program to directly map variables onto physical memory (such as memory-mapped I/O registers) without using traditional pointers.
 
 The .ads code is:
 
@@ -156,26 +156,39 @@ end zedboard_emio_gpio;
 
 \subsection{Ada Code - main.adb}
 
+In the main.adb file we import the Ada.Real\_time package, which allows us to use the Seconds function and Clock functions to set the delay between the LEDs being on and off. Hex AA means that LEDs LD1, LD3, LD5 and LD7 will turn off and on, whilse the others are always off.
+
 \begin{lstlisting}[style=ada]
-with Ada.Real_Time.Delays;
 with zedboard_emio_gpio;
 with Interfaces;
+with Ada.Real_time; use Ada.Real_time;
 
 procedure Main is
+
+D : Time_Span := Ada.Real_Time.Seconds(5); -- D is of Type Time_Span, Seconds is a function.
+                                           -- Nanoseconds also exists for example
+Next : Time := Ada.Real_Time.Clock + D;    -- WHat is dif between clock and clock time?
+
 begin
    zedboard_emio_gpio.Initialise;
 
+   Delay until Next;
+   Next := Next + D;
    loop
-      zedboard_emio_gpio.Set_LEDs (16#AA#);
-      delay 1.0;
-      zedboard_emio_gpio.Set_LEDs (16#00#);
+         zedboard_emio_gpio.Set_LEDs (16#AA#);
+         Delay until Next;
+         Next := Next + D;
+
+         zedboard_emio_gpio.Set_LEDs (16#00#);
+         Delay until Next;
+         Next := Next + D;              
    end loop;
 end Main;
 \end{lstlisting}
 
 \subsection{Ada Code - blink\_led.gpr}
 
-Finally I give the .gpr file. Maybe it will be useful. I started my project without using Alire. To make it an alr project, I cd'd into the project directory in my terminal:
+Finally I give the .gpr file. I started my project without using Alire. To make it an alr project, I cd'd into the project directory in my terminal:
 
 \begin{lstlisting}[style=xdc]
    cd "C:\Users\Lenovo\Documents\Ada-Programming-Language-and-the-Zedboard\bare_metal_programming\Blink_Led"
@@ -192,6 +205,9 @@ And ran
 \begin{lstlisting}[style=ada]
 with "config/blink_led_config.gpr";
 project Blink_Led is
+
+   for Runtime ("Ada") use "embedded-zynq7000";
+   for Target use "arm-eabi";
 
    for Source_Dirs use (".","mng_pl_ps/", "config/");
    for Object_Dir use "obj/" & Blink_Led_Config.Build_Profile;
@@ -215,10 +231,20 @@ end Blink_Led;
 
 \end{lstlisting}
 
+I manually added 
+
+\begin{lstlisting}[style=ada]
+   for Runtime ("Ada") use "embedded-zynq7000";
+   for Target use "arm-eabi";
+\end{lstlisting}
+
+This is required. The for Runtime command tells the Gnat compiler what CPU/architecture to compile for, in this case the zynq700. Other options are avilable, such as light-zynq7000, however this does not include the Rea\_Time library and therefore Alire throws up an error. The above was obtained from this \href{https://docs.adacore.com/gnat_ugx-docs/html/gnat_ugx/gnat_ugx/arm-elf_topics_and_tutorial.html}{link}.
+
+
 \begin{figure}
     \centering
     \includegraphics[width=0.7\textwidth]{aa_latex/Figures/Blink_LED/write_to_gpio/folder_structure.png}
     \caption{My folder structure after setting up my project as an Alire crate. The error in the .gpr file is because my Source\_Dirs was not pointing to the root folder (Blink\_LED).}\label{fig: w_2_gpio folder_struc}    
 \end{figure}
 
-Once this is all done, I ran alr build to build the .exe file (which we don't use), aswell as the .o file.
+Once this is all done, I ran alr build command. This should produce a .elf file in a folder called bin. It may simply be called main, I renamed it to make the extension explicit i.e. main.elf.
